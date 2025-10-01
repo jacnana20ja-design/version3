@@ -31,7 +31,7 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
   const { isDark, toggleTheme } = useTheme();
 
   return (
-    <div className="bg-white dark:bg-gray-900 h-screen shadow-sm border-r border-gray-100 dark:border-gray-800 fixed left-0 top-0 z-30 overflow-y-auto w-64 transform transition-transform duration-300 ease-in-out md:translate-x-0">
+    <div className="hidden md:block bg-white dark:bg-gray-900 h-screen shadow-sm border-r border-gray-100 dark:border-gray-800 fixed left-0 top-0 z-30 overflow-y-auto w-64">
       <div className="flex items-center justify-between px-6 py-6 border-b border-gray-100 dark:border-gray-800">
         <div className="flex items-center">
           <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-lg p-2 mr-3">

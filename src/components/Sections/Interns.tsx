@@ -29,8 +29,8 @@ export default function Interns() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Interns</h2>
-          <p className="text-white-600 mt-1">Manage and track your intern workforce</p>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Interns</h2>
+          <p className="text-gray-600 dark:text-gray-300 mt-1">Manage and track your intern workforce</p>
         </div>
         <button className="mt-4 sm:mt-0 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105">
           <Plus className="h-4 w-4" />
@@ -68,7 +68,7 @@ export default function Interns() {
       {/* Interns Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredInterns.map((intern) => (
-          <div key={intern.id} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow duration-200">
+          <div key={intern.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-200">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center space-x-3">
                 <img
@@ -77,8 +77,8 @@ export default function Interns() {
                   className="h-12 w-12 rounded-full object-cover"
                 />
                 <div>
-                  <h3 className="font-semibold text-gray-900">{intern.name}</h3>
-                  <p className="text-sm text-gray-600">{intern.department}</p>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">{intern.name}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">{intern.department}</p>
                 </div>
               </div>
               <button 
@@ -92,20 +92,20 @@ export default function Interns() {
             <div className="space-y-3">
               <div>
                 <div className="flex justify-between text-sm mb-1">
-                  <span className="text-gray-600">Progress</span>
-                  <span className="font-medium">{intern.progress}%</span>
+                  <span className="text-gray-600 dark:text-gray-300">Progress</span>
+                  <span className="font-medium text-gray-900 dark:text-white">{intern.progress}%</span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
-                    className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div
+                    className="bg-orange-600 dark:bg-orange-500 h-2 rounded-full transition-all duration-300"
                     style={{ width: `${intern.progress}%` }}
                   />
                 </div>
               </div>
-              
+
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Start Date</span>
-                <span className="font-medium">{new Date(intern.startDate).toLocaleDateString()}</span>
+                <span className="text-gray-600 dark:text-gray-300">Start Date</span>
+                <span className="font-medium text-gray-900 dark:text-white">{new Date(intern.startDate).toLocaleDateString()}</span>
               </div>
               
               <div className="flex justify-between text-sm">

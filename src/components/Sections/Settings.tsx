@@ -1,6 +1,6 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { Settings as SettingsIcon, Users, Lock, Bell, Database } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Settings as SettingsIcon, Users, Lock, Bell, Database, Camera } from 'lucide-react';
 import SettingsModal from '../Modals/SettingsModal';
 import InternFormModal from '../Modals/InternFormModal';
 
@@ -8,6 +8,27 @@ export default function Settings() {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState<'users' | 'security' | 'notifications' | 'database' | null>(null);
   const [showInternForm, setShowInternForm] = useState(false);
+  const [profileImage, setProfileImage] = useState<string>('https://api.dicebear.com/7.x/avataaars/svg?seed=Admin');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result as string);
+        localStorage.setItem('profileImage', reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  useEffect(() => {
+    const savedImage = localStorage.getItem('profileImage');
+    if (savedImage) {
+      setProfileImage(savedImage);
+    }
+  }, []);
 
   const handleOpenModal = (type: 'users' | 'security' | 'notifications' | 'database') => {
     setModalType(type);
@@ -61,6 +82,45 @@ export default function Settings() {
       <div>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Paramètres</h2>
         <p className="text-gray-600 dark:text-gray-300 mt-1">Configurer votre espace de travail InternHub</p>
+      </div>
+
+      {/* Profile Section */}
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+        <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Photo de Profil</h3>
+        <div className="flex items-center space-x-6">
+          <div className="relative">
+            <img
+              src={profileImage}
+              alt="Profile"
+              className="h-24 w-24 rounded-full object-cover border-4 border-gray-200 dark:border-gray-700"
+            />
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="absolute bottom-0 right-0 bg-orange-500 hover:bg-orange-600 text-white p-2 rounded-full shadow-lg transition-colors"
+            >
+              <Camera className="h-4 w-4" />
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="hidden"
+            />
+          </div>
+          <div>
+            <h4 className="font-medium text-gray-900 dark:text-white">Administrateur</h4>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+              Cliquez sur l'icône de caméra pour changer votre photo de profil
+            </p>
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="mt-3 text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium text-sm transition-colors"
+            >
+              Changer la photo →
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Settings Grid */}

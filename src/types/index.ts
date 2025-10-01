@@ -48,3 +48,14 @@ export interface DashboardMetrics {
   completedTasks: number;
   successRate: number;
 }
+
+export interface Notification {
+  id: string;
+  title: string;
+  message: string;
+  type: 'success' | 'warning' | 'info' | 'error';
+  timestamp: string;
+  read: boolean;
+  actionUrl?: string;
+  actionLabel?: string;
+}
