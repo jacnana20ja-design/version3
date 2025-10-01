@@ -2,24 +2,11 @@ import React, { useState } from 'react';
 import { FileText, Download, Calendar, TrendingUp, BarChart3, PieChart } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { progressData, departmentData, mockInterns, mockProjects, mockTasks } from '../../data/mockData';
-import { generatePDFReport } from '../../utils/pdfGenerator';
 
 export default function Reports() {
   const [generatingReport, setGeneratingReport] = useState(false);
 
-  const generateGlobalReport = async () => {
-    setGeneratingReport(true);
-
-    try {
-      await generatePDFReport();
-      alert('Rapport PDF généré avec succès!');
-    } catch (error) {
-      console.error('Erreur lors de la génération du rapport:', error);
-      alert('Erreur lors de la génération du rapport');
-    } finally {
-      setGeneratingReport(false);
-    }
-  };
+  
 
   const generateOldTextReport = () => {
     setGeneratingReport(true);
