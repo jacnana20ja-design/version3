@@ -1,5 +1,4 @@
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 import { mockInterns, mockProjects, mockTasks, progressData, departmentData } from '../data/mockData';
 
 interface ReportData {
